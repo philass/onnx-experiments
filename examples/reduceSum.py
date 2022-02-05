@@ -7,7 +7,10 @@ class ReduceSum(nn.Module):
 
     def forward(self, data: torch.Tensor):
         print(data)
-        return torch.sum(input=data, dim=(0))
+        tr1 = torch.transpose(data, 0, 2)
+        sum1 = torch.sum(input=tr1, dim=0, keepdim=True)
+        tr2 = torch.transpose(sum1, 0, 2)
+        return tr2
 
 def main():
     model = ReduceSum()
